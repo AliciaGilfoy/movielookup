@@ -13,9 +13,6 @@
     </div>
     <div class="row mt-3">
       <div class="col-6 text-warning">
-        <h4>
-          <u>Search Results</u>
-        </h4>
         <movies />
       </div>
       <div class="col-6">
