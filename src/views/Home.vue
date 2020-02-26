@@ -5,10 +5,18 @@
     </div>
     <div class="row justify-content-center mt-3">
       <div class="col-4">
-        <input type="search" placeholder="Enter movie name..." />
-        <button class="btn btn-info ml-2" type="submit">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
+        <form @submit.prevent="searchMovie">
+          <input
+            type="text"
+            placeholder="Enter movie name..."
+            name="input"
+            v-model="newSearch"
+            required
+          />
+          <button class="btn btn-info ml-2" type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
       </div>
     </div>
     <div class="row mt-3">
@@ -32,6 +40,16 @@ export default {
   components: {
     Movies,
     MovieDetails
+  },
+  data() {
+    return {
+      newSearch: ""
+    };
+  },
+  methods: {
+    searchMovie() {
+      this.$store.dispatch("searchMovie", this.newSearch);
+    }
   }
 };
 </script>

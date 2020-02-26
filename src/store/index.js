@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
     setActiveMovie(state, movie) {
       state.activeMovie = movie;
-    }
+    },
   },
   actions: {
     async getMovies({ commit, dispatch }) {
@@ -33,7 +33,15 @@ export default new Vuex.Store({
     },
     setActiveMovie({ commit }, movie) {
       commit("setActiveMovie", movie);
+    },
+    async searchMovie({ commit }, data) {
+      try {
+        let res = await _api.get("search/movie?api_key=529f54dec6b4e37145a5f04f68a8594a&page=1&include_adult=false&query=" + data)
+        commit("setMovies", res.data.results)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  },
+  }
 
 })
